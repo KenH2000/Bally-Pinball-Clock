@@ -21,3 +21,6 @@ Basic parts needed:
 * 12V/1A plug-in power supply
 * misc electronics -- wire/headers/solder 
 
+![clock](https://user-images.githubusercontent.com/60443687/232238852-93e0d1fc-f36c-4a17-a63e-6b94fe91d550.JPG)
+
+![stuff](https://user-images.githubusercontent.com/60443687/232238864-b302072b-93ec-482a-96a0-a83b6c17f098.jpg)
