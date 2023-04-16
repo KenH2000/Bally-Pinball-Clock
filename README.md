@@ -9,7 +9,7 @@ Instructions for building an Atmega328 based board that plugs into a Bally 6-dig
 Basic parts needed:
 
 * Atmega328 IC and socket (aka Arduino)
-* RTC module (clock keeps time when not powered on)
+* DS1307 RTC module (keeps time when clock is powered off)
 * Nixie Tube power supply (optional, supports original plasma displays)
 * Small stripboard
 * 20 pin .156 female J1 connector and female pins
@@ -27,11 +27,9 @@ Basic parts needed:
 
 <h1>Wiring</h1>
 
-
+![wiring](https://user-images.githubusercontent.com/60443687/232325776-770f1fc3-383e-423f-9419-03286d210708.png)
 
 <h1>High Voltage Power Supply</h1>
-
-![wiring](https://user-images.githubusercontent.com/60443687/232325776-770f1fc3-383e-423f-9419-03286d210708.png)
 
 The HVPS is available here:
 https://threeneurons.wordpress.com/nixie-power-supply/hv-supply-kit/
