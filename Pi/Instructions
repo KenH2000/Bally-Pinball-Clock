@@ -1,0 +1,76 @@
+Pi Pinclock Instructions
+
+1. Download piCore-9.0.3.zip from
+http://tinycorelinux.net/9.x/armv6/releases/RPi/
+
+2. Unzip the .img file and dd to sdcard.
+sudo dd piCore-9.0.3.img /dev/sdb
+
+3. Put sdcard in Pi with ethernet port.  Login 
+ssh tc@xxx.xxx.xxx.xxx
+password: piCore
+
+4. First boot, run to save ssh keys, and resize the partition
+filetool.sh -b
+sudo fdisk -u /dev/mmcblk0
+
+list partitions with 'p' command and write down the starting and
+ending sectors of the second partition. (eg 77824     100351)
+
+Delete second partition with 'd' than recreate it with 'n' command.
+   Use the same starting sector as deleted had and provide end
+   sectore or size greater than deleted had having enough free space
+   for Mounted Mode. When finished, exit fdisk with 'w' command. Now
+   partition size increased but file system size is not yet changed.
+
+5. Reboot and resize partition
+sudo resize2fs /dev/mmcblk0p2
+
+6. Load software
+tce-load -wi mc.tcz openssh.tcz git.tcz make.tcz gcc.tcz compiletc.tcz wiringpi.tcz wiringpi-dev.tcz nano.tcz
+tce-load -wi python.tcz python-RPi.GPIO.tcz wpa_supplicant.tcz wireless_tools.tcz wifi.tcz firmware-rpi3-wireless.tcz setuptools.tcz
+
+7. Create start.sh
+sudo nano /home/tc/start.sh
+#######start.sh############
+#!/bin/sh
+sudo python /home/tc/pinclock.py &
+sleep 1
+sudo wpa_supplicant -B -D wext -i wlan0 -c /opt/wpa_configure.conf &
+sleep 1
+sudo /sbin/udhcpc -b -i wlan0 -x hostname:$(/bin/hostname) -p /var/run/udhcpc.wlan0.pid &
+sudo cp /home/tc/Phoenix /etc/localtime
+###########################
+#make start.sh executable
+sudo chmod +x /home/tc/start.sh
+
+#add start.sh to bootlocal.sh
+sudo nano /opt/bootlocal.sh
+#add this line at bottom
+/home/tc/start.sh
+
+8. Fix the timezone.  Copy desired timezone file from pc to pi
+#connect using 'connect to server' and SSH
+#example to use AZ timezone
+#copy from pc the /usr/share/zoneinfo/America/Phoenix file to /home/tc/Phoenix
+
+9. Configure Wifi
+#####wireless conf##########
+#to obtain ssid and psk passphrase
+wpa_passphrase [SSID] [password] 
+sudo nano /opt/wpa_configure.conf 
+############################
+ctrl_interface=/var/run/wpa_supplicant
+
+network={
+ssid="your_ssid"
+proto=RSN
+key_mgmt=WPA-PSK
+pairwise=CCMP
+psk=pass_phrase from wpa_passphrase
+}
+############################
+
+10. Copy pinclock.py to /home/tc/.
+#save config
+filetool.sh -b 
