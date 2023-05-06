@@ -6,6 +6,8 @@
 
 Instructions for building an Atmega328 based board that plugs into a Bally 6-digit pinball display that shows the time.
 
+(For a less hardware intensive pinball clock using a Raspberry Pi, scroll to <b>Raspberry Pi Clock</b> below)
+
 Basic parts needed:
 
 * Atmega328 IC and socket (aka Arduino)
