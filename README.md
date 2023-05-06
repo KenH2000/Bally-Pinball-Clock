@@ -43,5 +43,6 @@ https://threeneurons.wordpress.com/nixie-power-supply/hv-supply-kit/
 <!--![rtc](https://user-images.githubusercontent.com/60443687/232324989-c929c078-a96e-4805-afff-f8824a594c5f.jpg)-->
 
 <h1>Raspberry Pi Clock</h1>
-A simlified version of the pinball clock uses a Raspberry Pi.  The only requirements are to make a connector and load software to a Raspberry Pi.  If you'd prefer to make the Pi clock, the instructions and programs are in the Pi folder.
+A simlified version of the pinball clock uses a Raspberry Pi instead of all the components used above.  The only requirements are to make a connector and install software to a Raspberry Pi.  If you'd prefer to make the Pi clock, the instructions and programs are located in the pi folder.
 
+![piclock](https://user-images.githubusercontent.com/60443687/236638432-9cbf68a5-de1d-47cf-8c83-d4b8e46f33ba.JPG)
