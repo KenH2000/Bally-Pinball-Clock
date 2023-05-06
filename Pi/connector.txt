@@ -1,0 +1,2 @@
+The connector to the Bally Display is a 20-pin Molex female with .156 spacing.
+The connectors on the Pi side are an 18-pin female Molex with .100 spacing (kk type) + 1 .100 female Molex for the 5v connection.
